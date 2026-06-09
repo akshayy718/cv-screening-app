@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:upload="sap.ui.unified">
+
+    <VBox class="sapUiSmallMargin">
+        <Title text="Upload CV" level="H4" class="sapUiSmallMarginBottom"/>
+
+        <HBox alignItems="Center">
+            <upload:FileUploader
+                id="fileUploader"
+                name="cvFile"
+                fileType="pdf,docx,txt"
+                placeholder="Choose a PDF, DOCX or TXT file"
+                width="400px"
+                change=".onFileSelected"
+                style="Emphasized"
+            />
+            <Button
+                text="Upload &amp; Process"
+                type="Emphasized"
+                press=".onUploadCV"
+                class="sapUiSmallMarginBegin"
+                icon="sap-icon://upload"
+            />
+        </HBox>
+
+        <MessageStrip
+            id="uploadStatusStrip"
+            text="No CV uploaded yet"
+            type="Information"
+            showIcon="true"
+            class="sapUiSmallMarginTop"
+            visible="true"
+        />
+    </VBox>
+</core:FragmentDefinition>

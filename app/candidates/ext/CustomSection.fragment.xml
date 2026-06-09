@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <VBox class="sapUiSmallMargin">
+        <Title text="CV Upload" level="H3" class="sapUiSmallMarginBottom"/>
+        <MessageStrip
+            text="Upload a PDF or DOCX file. AI will automatically extract candidate details."
+            type="Information"
+            showIcon="true"
+            class="sapUiSmallMarginBottom"/>
+        <Button
+            text="Upload CV"
+            type="Emphasized"
+            icon="sap-icon://upload"
+            press=".onUploadCV"
+            class="sapUiSmallMarginBottom"/>
+        <HBox alignItems="Center">
+            <Label text="Uploaded File: "/>
+            <Text text="{CVFileName}"/>
+        </HBox>
+    </VBox>
+</core:FragmentDefinition>

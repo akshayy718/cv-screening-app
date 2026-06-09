@@ -1,0 +1,27 @@
+Daniel Morgan
+Email: daniel.morgan.dev@gmail.com
+Phone: +44 7700 900123
+Location: London, United Kingdom
+
+SUMMARY
+Software Engineer with 5 years experience in backend development and cloud platforms.
+
+EXPERIENCE
+Software Engineer - TechNova Solutions (June 2022 - Present)
+- Developed REST APIs using Node.js and Express
+- Cloud deployment using AWS and Docker
+- Optimised database queries improving performance by 30%
+
+Junior Developer - BrightEdge Digital (July 2020 - May 2022)
+- Built frontend components using React
+- Backend development using Node.js
+
+SKILLS
+JavaScript, Node.js, REST APIs, SQL, PostgreSQL, Docker, AWS, Git, React
+
+EDUCATION
+BSc Computer Science - University of Manchester (2017-2020)
+
+CERTIFICATIONS
+AWS Certified Cloud Practitioner
+Node.js Developer Certification

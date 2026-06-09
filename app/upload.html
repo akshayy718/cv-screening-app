@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CV Screening - Upload</title>
+<style>
+body{font-family:Arial;padding:40px;background:#f5f5f5}
+.card{background:white;padding:30px;border-radius:8px;max-width:650px;margin:0 auto;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+h1{color:#0070F2}
+.upload-area{border:2px dashed #0070F2;border-radius:8px;padding:40px;text-align:center;cursor:pointer;margin:20px 0;background:#f0f7ff}
+.upload-area input{display:none}
+.file-name{margin-top:10px;color:#333;font-weight:bold}
+button{width:100%;padding:14px;background:#0070F2;color:white;border:none;border-radius:4px;font-size:16px;cursor:pointer;margin-top:10px}
+button:disabled{background:#ccc}
+#status{padding:15px;border-radius:4px;margin-top:15px;display:none;font-weight:bold}
+.success{background:#e8f5e9;color:#2e7d32}
+.error{background:#ffebee;color:#c62828}
+.info{background:#e3f2fd;color:#1565c0}
+.result-card{background:#f9f9f9;border:1px solid #ddd;border-radius:8px;padding:20px;margin-top:15px}
+.result-card h3{color:#0070F2;margin-top:0}
+.field{margin:8px 0}
+.field b{color:#333;min-width:120px;display:inline-block}
+.summary{white-space:pre-wrap;font-size:13px;background:white;padding:15px;border-radius:4px;border:1px solid #ddd;margin-top:10px;line-height:1.6}
+.step{margin:5px 0;color:#666;font-size:14px}
+.step.done{color:#2e7d32}
+.step.active{color:#1565c0;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🤖 CV Screening App</h1>
+<p>Upload a CV and AI will automatically extract candidate details.</p>
+<div class="upload-area" onclick="document.getElementById('cvFile').click()">
+<input type="file" id="cvFile" accept=".pdf,.docx,.txt" onchange="fileSelected(this)"/>
+<div style="font-size:40px">📄</div>
+<p>Click to select CV file</p>
+<p style="font-size:12px;color:#999">Supports PDF, DOCX, TXT</p>
+<div class="file-name" id="fileName"></div>
+</div>
+<button id="uploadBtn" onclick="startUpload()" disabled>Upload and Process with AI</button>
+<div id="status"></div>
+<div id="steps" style="display:none;margin-top:15px">
+<div class="step" id="step1">Reading file...</div>
+<div class="step" id="step2">Uploading CV...</div>
+<div class="step" id="step3">Extracting text...</div>
+<div class="step" id="step4">Running AI analysis...</div>
+<div class="step" id="step5">Saving results...</div>
+</div>
+<div id="results"></div>
+</div>
+<script>
+let selectedFile = null;
+
+function fileSelected(input) {
+    selectedFile = input.files[0];
+    if (selectedFile) {
+        document.getElementById('fileName').textContent = 'Selected: ' + selectedFile.name;
+        document.getElementById('uploadBtn').disabled = false;
+    }
+}
+
+function setStep(id, status) {
+    const el = document.getElementById(id);
+    if (status === 'done') el.textContent = '✅ ' + el.textContent.replace('⏳ ', '');
+    else if (status === 'active') el.textContent = '⏳ ' + el.textContent;
+}
+
+async function startUpload() {
+    if (!selectedFile) return;
+    const btn = document.getElementById('uploadBtn');
+    btn.disabled = true;
+    document.getElementById('steps').style.display = 'block';
+    document.getElementById('results').innerHTML = '';
+
+    try {
+        setStep('step1', 'active');
+        showStatus('Reading file...', 'info');
+        const base64 = await readFileAsBase64(selectedFile);
+        setStep('step1', 'done');
+
+        setStep('step2', 'active');
+        setStep('step3', 'active');
+        setStep('step4', 'active');
+        showStatus('Uploading and running AI analysis... Please wait...', 'info');
+
+        const uploadRes = await fetch('/candidate/uploadCV', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': 'unsafe'
+            },
+            body: JSON.stringify({
+                candidateId: null,
+                fileName: selectedFile.name,
+                fileContent: base64
+            })
+        });
+
+        const uploadData = await uploadRes.json();
+
+        if (uploadData.error) {
+            showStatus('Error: ' + uploadData.error.message, 'error');
+            btn.disabled = false;
+            return;
+        }
+
+        setStep('step2', 'done');
+        setStep('step3', 'done');
+        setStep('step4', 'done');
+        setStep('step5', 'active');
+        showStatus('Fetching results...', 'info');
+
+        let candidateId = null;
+        try {
+            const result = JSON.parse(uploadData.value);
+            candidateId = result.candidateId;
+        } catch(e) {
+            showStatus('Error parsing response', 'error');
+            btn.disabled = false;
+            return;
+        }
+
+        const res = await fetch('/candidate/Candidates(' + candidateId + ')');
+        const candidate = await res.json();
+        setStep('step5', 'done');
+        showStatus('CV processed successfully!', 'success');
+
+        document.getElementById('results').innerHTML =
+            '<div class="result-card">' +
+            '<h3>👤 Candidate Details</h3>' +
+            '<div class="field"><b>Name:</b> ' + (candidate.FullName || '-') + '</div>' +
+            '<div class="field"><b>Email:</b> ' + (candidate.Email || '-') + '</div>' +
+            '<div class="field"><b>Phone:</b> ' + (candidate.Phone || '-') + '</div>' +
+            '<div class="field"><b>Role:</b> ' + (candidate.CurrentRole || '-') + '</div>' +
+            '<div class="field"><b>Experience:</b> ' + (candidate.YearsOfExperience || '-') + ' years</div>' +
+            '<div class="field"><b>Skills:</b> ' + (candidate.Skills || '-') + '</div>' +
+            '</div>' +
+            '<div class="result-card">' +
+            '<h3>🤖 AI Summary</h3>' +
+            '<div class="summary">' + (candidate.AISummary || '-') + '</div>' +
+            '</div>';
+
+        btn.disabled = false;
+
+    } catch(err) {
+        showStatus('Error: ' + err.message, 'error');
+        btn.disabled = false;
+    }
+}
+
+function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+
+function showStatus(msg, type) {
+    const s = document.getElementById('status');
+    s.textContent = msg;
+    s.className = type;
+    s.style.display = 'block';
+}
+</script>
+</body>
+</html>

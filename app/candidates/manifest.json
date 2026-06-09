@@ -1,0 +1,116 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "cv.screening.candidates",
+    "type": "application",
+    "title": "CV Screening App",
+    "description": "AI-Powered CV Screening",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/candidate/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.ui5": {
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "cv.screening.candidates.uploadController"
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "mainService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": "",
+          "name": "CandidatesList",
+          "target": "CandidatesList"
+        },
+        {
+          "pattern": "Candidates({key})",
+          "name": "CandidatesObjectPage",
+          "target": "CandidatesObjectPage"
+        }
+      ],
+      "targets": {
+        "CandidatesList": {
+          "type": "Component",
+          "id": "CandidatesList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Candidates",
+              "variantManagement": "Page",
+              "initialLoad": true
+            }
+          }
+        },
+        "CandidatesObjectPage": {
+          "type": "Component",
+          "id": "CandidatesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "Candidates",
+              "editableHeaderContent": false,
+              "sectionLayout": "Page",
+              "content": {
+                "body": {
+                  "sections": {
+                    "CustomUploadSection": {
+                      "template": "cv.screening.candidates.ext.CustomSection",
+                      "title": "CV Upload",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "fe::FacetSection::AIResults"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

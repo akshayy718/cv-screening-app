@@ -1,0 +1,16 @@
+{
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": ":memory:"
+      }
+    }
+  },
+  "features": {
+    "draft_compat": false
+  },
+  "odata": {
+    "version": "v4"
+  }
+}
