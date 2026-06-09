@@ -5,12 +5,12 @@
       "credentials": {
         "url": ":memory:"
       }
+    },
+    "auth": {
+      "kind": "dummy"
     }
   },
   "features": {
     "draft_compat": false
-  },
-  "odata": {
-    "version": "v4"
   }
 }
