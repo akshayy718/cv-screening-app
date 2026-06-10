@@ -3,7 +3,7 @@
     "db": {
       "kind": "sqlite",
       "credentials": {
-        "url": ":memory:"
+        "url": "db.sqlite"
       }
     },
     "auth": {
@@ -12,5 +12,10 @@
   },
   "features": {
     "draft_compat": false
+  },
+  "server": {
+    "body-parser": {
+      "limit": "50mb"
+    }
   }
 }
