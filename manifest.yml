@@ -1,0 +1,10 @@
+applications:
+  - name: cv-screening-app
+    memory: 256M
+    disk_quota: 1G
+    buildpacks:
+      - nodejs_buildpack
+    command: npm start
+    env:
+      NODE_ENV: production
+      GROQ_API_KEY: REPLACE_WITH_YOUR_GROQ_API_KEY
