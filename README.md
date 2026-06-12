@@ -1,134 +1,61 @@
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=CV%20Screening%20App&fontSize=50&fontColor=fff&animation=twinkling&fontAlignY=36&desc=AI-Powered%20Candidate%20Screening%20on%20SAP%20BTP&descAlignY=58&descSize=18" width="100%"/>
-</div>
 
-<div align="center">
+# 🤖 CV Screening App
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-SAP_BTP_Cloud_Foundry-A855F7?style=for-the-badge)](https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/upload.html)
-[![GitHub](https://img.shields.io/badge/GitHub-akshayy718-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/akshayy718)
-[![SAP BTP](https://img.shields.io/badge/SAP%20BTP-Cloud%20Foundry-0070F2?style=for-the-badge&logo=sap&logoColor=white)](https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/upload.html)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+### AI-Powered Candidate Screening on SAP BTP
 
-</div>
+**Built with SAP CAP · SAP Fiori Elements · Node.js · Groq AI · Cloud Foundry**
 
-<div align="center">
+[🚀 Live Demo](https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/upload.html) • [📊 API](https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/candidate/Candidates) • [👨‍💻 Author](https://github.com/akshayy718)
 
-![SAP CAP](https://img.shields.io/badge/SAP%20CAP-0FAAFF?style=flat-square&logo=sap&logoColor=white)
-![SAP Fiori](https://img.shields.io/badge/SAP%20Fiori%20Elements-009FDA?style=flat-square&logo=sap&logoColor=white)
-![SAP BTP](https://img.shields.io/badge/SAP%20BTP-0070F2?style=flat-square&logo=sap&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
-![Groq AI](https://img.shields.io/badge/Groq%20AI-F55036?style=flat-square&logoColor=white)
-![OData](https://img.shields.io/badge/OData%20v4-E8145A?style=flat-square)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-![Cloud Foundry](https://img.shields.io/badge/Cloud%20Foundry-0C9ED5?style=flat-square&logo=cloud-foundry&logoColor=white)
+---
+
+![SAP CAP](https://img.shields.io/badge/SAP%20CAP-v9-blue?style=flat-square&logo=sap)
+![Node.js](https://img.shields.io/badge/Node.js-20.x-green?style=flat-square&logo=nodedotjs)
+![Groq AI](https://img.shields.io/badge/Groq-llama--3.3--70b-orange?style=flat-square)
+![BTP](https://img.shields.io/badge/SAP%20BTP-Cloud%20Foundry-lightblue?style=flat-square&logo=sap)
+![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 </div>
 
 ---
 
-## 🤖 What is this?
+## 📌 Overview
 
-An **enterprise-grade AI-powered CV screening application** built on **SAP BTP** using **SAP CAP (Cloud Application Programming Model)**. Upload a candidate's CV in PDF, DOCX, or TXT format — the app automatically extracts structured data and generates a professional AI summary using **Groq's Llama 3.3 70B** model.
+Upload a CV in **PDF, DOCX, or TXT** format — the app automatically:
 
-> Built as a take-home assignment for Apsolut Middle East & Africa — first-ever SAP BTP project, built from scratch in 2 days.
+1. Extracts text from the file
+2. Sends it to **Groq AI (Llama 3.3 70B)**
+3. Extracts structured data: name, email, phone, skills, experience, role
+4. Generates a professional **AI summary** with key strengths and role fit
+5. Displays everything in a **SAP Fiori List Report + Object Page**
 
----
-
-## ✨ Features
-
-| Feature | Details |
-|---------|---------|
-| 📄 **Multi-format CV Upload** | PDF, DOCX, TXT support with automatic text extraction |
-| 🤖 **AI Data Extraction** | Extracts Name, Email, Phone, Skills, Experience, Current Role |
-| 📝 **AI Summary Generation** | Professional summary with Key Strengths and Role Fit |
-| 📋 **SAP Fiori List Report** | View all candidates in a sortable, filterable table |
-| 🔍 **SAP Fiori Object Page** | Detailed candidate view with all AI-extracted data |
-| ☁️ **Live on SAP BTP** | Deployed and running on Cloud Foundry us10 region |
-| 🔒 **Secure API Keys** | Environment variables via CF — zero hardcoded secrets |
+> 🏆 Built as a take-home assignment for Apsolut Middle East & Africa — first SAP BTP project, built from scratch in 2 days.
 
 ---
 
-## 🚀 Live Demo
+## 🔗 Live Links
 
-<div align="center">
-
-| URL | Description |
-|-----|-------------|
-| [📤 Upload Page](https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/upload.html) | Upload a CV and see AI extraction live |
-| [📊 OData API](https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/candidate/Candidates) | Live candidate data as OData JSON |
-
-</div>
+| | URL |
+|--|-----|
+| 📤 Upload Page | https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/upload.html |
+| 📊 OData API | https://cv-screening-app.cfapps.us10-001.hana.ondemand.com/candidate/Candidates |
+| 💻 GitHub | https://github.com/akshayy718/cv-screening-app |
 
 ---
 
-## 🏗️ Architecture
-
-```
-SAP BTP Cloud Foundry (us10)
-├── 📄 app/upload.html          → Custom CV Upload UI
-├── 🎨 app/annotations.cds      → Fiori Elements UI Config
-├── 🔧 srv/service.cds          → OData Service Definition (@path: /candidate)
-├── ⚙️  srv/service.js           → Node.js Business Logic + Groq AI
-├── 🗄️  db/schema.cds            → Candidates Data Model (CDS)
-├── 📦 package.json             → Dependencies + CAP Config
-├── 🚀 manifest.yml             → CF Deployment Config
-└── 🗃️  db.sqlite               → SQLite Database
-```
-
----
-
-## 🤖 AI Pipeline
-
-```
-CV File (PDF/DOCX/TXT)
-        │
-        ▼
-  Text Extraction
-  (pdf-parse / mammoth)
-        │
-        ▼
-┌──────────────────────────────┐
-│     Groq API Call #1         │
-│  llama-3.3-70b-versatile     │
-│  → JSON Extraction           │
-│  Name, Email, Phone,         │
-│  Skills, Experience, Role    │
-└──────────────────────────────┘
-        │
-        ▼
-┌──────────────────────────────┐
-│     Groq API Call #2         │
-│  llama-3.3-70b-versatile     │
-│  → Professional Summary      │
-│  Key Strengths + Role Fit    │
-└──────────────────────────────┘
-        │
-        ▼
-  Save to SQLite DB
-        │
-        ▼
-  Display in Fiori UI
-```
-
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
+## ⚙️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| **Framework** | SAP CAP (Cloud Application Programming Model) |
-| **Frontend** | SAP Fiori Elements (SAPUI5) + Custom HTML5 |
-| **Backend** | Node.js |
-| **AI / LLM** | Groq API — llama-3.3-70b-versatile |
-| **Database** | SQLite (via @cap-js/sqlite) |
-| **API** | OData v4 (auto-generated by CAP) |
-| **Parsing** | pdf-parse (PDF) · mammoth (DOCX) |
-| **Deployment** | SAP BTP Cloud Foundry · nodejs_buildpack |
-| **Auth** | Dummy (trial) → XSUAA (production) |
-
-</div>
+| Framework | SAP CAP (Cloud Application Programming Model) |
+| Frontend | SAP Fiori Elements (SAPUI5) + Custom HTML5 |
+| Backend | Node.js |
+| AI Model | Groq API — llama-3.3-70b-versatile |
+| Database | SQLite via @cap-js/sqlite |
+| API Protocol | OData v4 (auto-generated by CAP) |
+| File Parsing | pdf-parse (PDF) · mammoth (DOCX) |
+| Deployment | SAP BTP Cloud Foundry · nodejs_buildpack |
 
 ---
 
@@ -137,31 +64,48 @@ CV File (PDF/DOCX/TXT)
 ```
 cv-screening-app/
 ├── app/
-│   ├── candidates/             # Fiori Elements App (manifest.json)
-│   ├── annotations.cds         # UI.LineItem, UI.Facets, UI.FieldGroup
-│   └── upload.html             # Custom CV upload page
+│   ├── candidates/          # Fiori Elements App
+│   ├── annotations.cds      # Fiori UI annotations
+│   └── upload.html          # Custom CV upload page
 ├── db/
-│   └── schema.cds              # Candidates entity (11 fields)
+│   └── schema.cds           # Candidates data model
 ├── srv/
-│   ├── service.cds             # OData service + uploadCV action
-│   └── service.js              # File upload + AI integration logic
-├── .cdsrc.json                 # CDS config (db, auth, body-parser)
-├── manifest.yml                # BTP Cloud Foundry deployment config
-├── package.json                # npm deps + CAP config
-├── db.sqlite                   # SQLite database file
-└── screenshots/                # App screenshots
+│   ├── service.cds          # OData service definition
+│   └── service.js           # Business logic + Groq AI
+├── .cdsrc.json              # CDS configuration
+├── manifest.yml             # BTP deployment config
+├── package.json             # Dependencies
+└── screenshots/             # App screenshots
 ```
 
 ---
 
-## ⚡ Quick Start
+## 🤖 How the AI Works
+
+```
+Upload CV (PDF / DOCX / TXT)
+        ↓
+Extract Text (pdf-parse / mammoth)
+        ↓
+Groq API Call 1 → Structured JSON Extraction
+   → FullName, Email, Phone, Skills, Experience, Role
+        ↓
+Groq API Call 2 → Professional Summary
+   → Key Strengths + Suggested Role Fit
+        ↓
+Save to SQLite → Display in Fiori UI
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 20+
-- SAP CDS CLI: `npm install -g @sap/cds-dk`
-- Groq API Key → [console.groq.com](https://console.groq.com) (free)
+- `npm install -g @sap/cds-dk`
+- Free Groq API Key → [console.groq.com](https://console.groq.com)
 
-### Installation
+### Install
 
 ```bash
 git clone https://github.com/akshayy718/cv-screening-app.git
@@ -169,28 +113,26 @@ cd cv-screening-app
 npm install
 ```
 
-### Configuration
+### Configure
 
-Create a `.env` file in the root:
-
-```env
+Create `.env` file:
+```
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-### Run Locally
+### Run
 
 ```bash
 cds watch
 ```
-
 Open → `http://localhost:4004/upload.html`
 
 ---
 
-## ☁️ BTP Deployment
+## ☁️ Deploy to SAP BTP
 
 ```bash
-# Login to Cloud Foundry
+# Login
 cf login -a https://api.cf.us10-001.hana.ondemand.com --sso
 
 # Deploy
@@ -198,24 +140,12 @@ cf push
 
 # Set API Key
 cf set-env cv-screening-app GROQ_API_KEY your_key_here
-
-# Restart
 cf restage cv-screening-app
 ```
 
 ---
 
-## 📸 Screenshots
-
-> All screenshots available in the [/screenshots](./screenshots) folder.
-
-| Upload Page | Fiori List Report | Object Page |
-|-------------|-------------------|-------------|
-| CV upload with progress steps | All candidates table | Full AI summary view |
-
----
-
-## 🔑 Data Model
+## 🗄️ Data Model
 
 ```cds
 entity Candidates {
@@ -235,34 +165,32 @@ entity Candidates {
 
 ---
 
-## 🔮 Production Improvements
+## 📸 Screenshots
 
-- [ ] **SAP HANA Cloud** — replace SQLite for enterprise-grade persistence
-- [ ] **XSUAA Authentication** — role-based access control
-- [ ] **HTML5 Repository + App Router** — full Fiori UI on BTP
-- [ ] **SAP Document Information Extraction** — advanced PDF parsing
-- [ ] **Job Description Matching** — score candidates against JD
-- [ ] **Batch CV Processing** — upload multiple CVs at once
-- [ ] **SAP Generative AI Hub** — enterprise LLM via SAP AI Core
+All screenshots available in the [/screenshots](./screenshots) folder.
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] SAP HANA Cloud instead of SQLite
+- [ ] XSUAA authentication with role-based access
+- [ ] Job Description matching with candidate score
+- [ ] Batch CV processing
+- [ ] SAP Generative AI Hub integration
 
 ---
 
 ## 👨‍💻 Author
 
-<div align="center">
+**Akshay Santhosh** — AI/ML Engineer · SAP BTP Developer
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Akshay%20Santhosh-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/akshay-santhosh-)
-[![GitHub](https://img.shields.io/badge/GitHub-akshayy718-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/akshayy718)
-[![Gmail](https://img.shields.io/badge/Gmail-akshaysanthosh718-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:akshaysanthosh718@gmail.com)
-
-</div>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/akshay-santhosh-)
+[![GitHub](https://img.shields.io/badge/GitHub-akshayy718-181717?style=flat-square&logo=github)](https://github.com/akshayy718)
+[![Email](https://img.shields.io/badge/Email-akshaysanthosh718-EA4335?style=flat-square&logo=gmail)](mailto:akshaysanthosh718@gmail.com)
 
 ---
 
 <div align="center">
-
-*Built with ❤️ using SAP CAP, Groq AI, and SAP BTP Cloud Foundry*
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=130&section=footer&animation=twinkling" width="100%"/>
-
+Built with ❤️ using SAP CAP · Groq AI · SAP BTP Cloud Foundry
 </div>
