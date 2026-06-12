@@ -30,3 +30,23 @@ npm install
 
 ## Configuration
 Create a `.env` file:
+## Running Locally
+cds watch
+Open: http://localhost:4004/upload.html
+
+## BTP Deployment
+cf login -a https://api.cf.us10-001.hana.ondemand.com --sso
+cf push
+cf set-env cv-screening-app GROQ_API_KEY your_key_here
+cf restage cv-screening-app
+
+## Project Structure
+- db/schema.cds - Candidate data model
+- srv/service.cds - OData service definition
+- srv/service.js - Business logic and AI integration
+- app/upload.html - CV upload interface
+- app/annotations.cds - Fiori UI annotations
+- app/candidates/ - Fiori Elements application
+
+## Screenshots
+Screenshots available in the /screenshots folder.
