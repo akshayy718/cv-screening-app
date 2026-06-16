@@ -57,6 +57,10 @@ An **enterprise-grade AI-powered CV screening application** built natively on **
 
 </div>
 
+## 🎥 Demo Video
+
+[![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-Google_Drive-4285F4?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/file/d/1gRLtzsqXTPJpjHwagpUS5L9IwiUb3Dje/view?usp=sharing)
+
 ---
 
 ## 🏗️ Architecture
